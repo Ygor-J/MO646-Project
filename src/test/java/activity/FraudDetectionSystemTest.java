@@ -29,7 +29,7 @@ public class FraudDetectionSystemTest {
     FraudDetectionSystem system = new FraudDetectionSystem();
 
     @Test
-    void testLargeTransactionAmount() {
+    public void testLargeTransactionAmount() {
         // Cenário: Transação acima de 10.000
         Transaction currentTransaction = new Transaction(15000.0, LocalDateTime.now(), "New York");
         List<Transaction> previousTransactions = new ArrayList<>();
@@ -44,7 +44,7 @@ public class FraudDetectionSystemTest {
     }
 
     @Test
-    void testExcessiveTransactionsInLastHour() {
+    public void testExcessiveTransactionsInLastHour() {
         // Cenário: Mais de 10 transações na última hora
         Transaction currentTransaction = new Transaction(500.0, LocalDateTime.now(), "New York");
         List<Transaction> previousTransactions = new ArrayList<>();
@@ -64,7 +64,7 @@ public class FraudDetectionSystemTest {
     }
 
     @Test
-    void testLocationChangeWithinShortTimeFrame() {
+    public void testLocationChangeWithinShortTimeFrame() {
         // Cenário: Mudança de localização em um curto espaço de tempo (< 30 min)
         Transaction currentTransaction = new Transaction(1000.0, LocalDateTime.now(), "London");
         List<Transaction> previousTransactions = new ArrayList<>();
@@ -80,7 +80,7 @@ public class FraudDetectionSystemTest {
     }
 
     @Test
-    void testTransactionInBlacklistedLocation() {
+    public void testTransactionInBlacklistedLocation() {
         // Cenário: Transação em local da lista negra
         Transaction currentTransaction = new Transaction(700.0, LocalDateTime.now(), "Restricted Area");
         List<Transaction> previousTransactions = new ArrayList<>();
@@ -95,7 +95,7 @@ public class FraudDetectionSystemTest {
     }
 
     @Test
-    void testLowRiskTransaction() {
+    public void testLowRiskTransaction() {
         // Cenário: Transação normal, sem risco identificado
         Transaction currentTransaction = new Transaction(500.0, LocalDateTime.now(), "New York");
         List<Transaction> previousTransactions = new ArrayList<>();
@@ -110,7 +110,7 @@ public class FraudDetectionSystemTest {
     }
 
     @Test
-    void testCombinationOfRisks() {
+    public void testCombinationOfRisks() {
         // Cenário: Combinação de múltiplos fatores de risco (montante alto e mudança de localização)
         Transaction currentTransaction = new Transaction(15000.0, LocalDateTime.now(), "Berlin");
         List<Transaction> previousTransactions = new ArrayList<>();

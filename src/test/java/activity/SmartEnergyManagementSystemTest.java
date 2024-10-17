@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 import activity.FraudDetectionSystem.Transaction;
 import activity.FraudDetectionSystem.FraudCheckResult;
 import activity.FraudDetectionSystem;
-import static org.junit.jupiter.api.Assertions.*;
+//import static org.junit.jupiter.api.Assertions.*;
 
 public class SmartEnergyManagementSystemTest {
 
@@ -26,7 +26,7 @@ public class SmartEnergyManagementSystemTest {
     SmartEnergyManagementSystem system = new SmartEnergyManagementSystem();
 
     @Test
-    void testEnergySavingModeActivated() {
+    public void testEnergySavingModeActivated() {
         // Cenário: Ativar o modo de economia de energia devido ao preço alto
         Map<String, Integer> devicePriorities = new HashMap<>();
         devicePriorities.put("Lights", 2);
@@ -52,7 +52,7 @@ public class SmartEnergyManagementSystemTest {
     }
 
     @Test
-    void testNightModeActivation() {
+    public void testNightModeActivation() {
         // Cenário: Ativação do modo noturno
         Map<String, Integer> devicePriorities = new HashMap<>();
         devicePriorities.put("Lights", 1);
@@ -77,7 +77,7 @@ public class SmartEnergyManagementSystemTest {
     }
 
     @Test
-    void testTemperatureRegulationHeating() {
+    public void testTemperatureRegulationHeating() {
         // Cenário: Ativação do aquecimento
         Map<String, Integer> devicePriorities = new HashMap<>();
         devicePriorities.put("Heater", 1);
@@ -99,7 +99,7 @@ public class SmartEnergyManagementSystemTest {
     }
 
     @Test
-    void testEnergyLimitExceeded() {
+    public void testEnergyLimitExceeded() {
         // Cenário: Limite de energia ultrapassado
         Map<String, Integer> devicePriorities = new HashMap<>();
         devicePriorities.put("Lights", 3);
@@ -123,7 +123,7 @@ public class SmartEnergyManagementSystemTest {
     }
 
     @Test
-    void testDeviceScheduleActivation() {
+    public void testDeviceScheduleActivation() {
         // Cenário: Ativação de dispositivo agendado
         Map<String, Integer> devicePriorities = new HashMap<>();
         devicePriorities.put("WashingMachine", 1);

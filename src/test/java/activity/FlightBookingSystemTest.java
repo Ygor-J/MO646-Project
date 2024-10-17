@@ -7,7 +7,9 @@ import activity.FlightBookingSystem.BookingResult;
 
 import java.time.LocalDateTime;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import activity.FlightBookingSystem.BookingResult;
 
@@ -23,9 +25,8 @@ public class FlightBookingSystemTest {
     FlightBookingSystem system = new FlightBookingSystem();
 
     @Test
-    void testBookingWithoutAvailableSeats() {
-        BookingResult result = system.bookFlight(5, LocalDateTime.now(), 3, 200.0, 50, false, 
-                                                 LocalDateTime.now().plusDays(5), 0);
+    public void testBookingWithoutAvailableSeats() {
+        BookingResult result = system.bookFlight(5, LocalDateTime.now(), 3, 200.0, 50, false, LocalDateTime.now().plusDays(5), 0);
         assertFalse(result.confirmation);
         assertEquals(0, result.totalPrice);
         assertEquals(0, result.refundAmount);
@@ -33,9 +34,8 @@ public class FlightBookingSystemTest {
     }
 
     @Test
-    void testRegularBooking() {
-        BookingResult result = system.bookFlight(2, LocalDateTime.now(), 5, 150.0, 30, false, 
-                                                 LocalDateTime.now().plusDays(3), 0);
+    public void testRegularBooking() {
+        BookingResult result = system.bookFlight(2, LocalDateTime.now(), 5, 150.0, 30, false, LocalDateTime.now().plusDays(3), 0);
         assertTrue(result.confirmation);
         assertEquals(2 * 150 * (30.0 / 100.0) * 0.8, result.totalPrice);
         assertEquals(0, result.refundAmount);
@@ -43,7 +43,7 @@ public class FlightBookingSystemTest {
     }
 
     @Test
-    void testBookingWithLastMinuteFee() {
+    public void testBookingWithLastMinuteFee() {
         BookingResult result = system.bookFlight(1, LocalDateTime.now(), 3, 200.0, 50, false, 
                                                  LocalDateTime.now().plusHours(20), 0);
         assertTrue(result.confirmation);
@@ -53,7 +53,7 @@ public class FlightBookingSystemTest {
     }
 
     @Test
-    void testBookingWithRewardPoints() {
+    public void testBookingWithRewardPoints() {
         BookingResult result = system.bookFlight(3, LocalDateTime.now(), 5, 180.0, 40, false, 
                                                  LocalDateTime.now().plusDays(2), 1000);
         assertTrue(result.confirmation);
@@ -64,7 +64,7 @@ public class FlightBookingSystemTest {
     }
 
     @Test
-    void testGroupBookingDiscount() {
+    public void testGroupBookingDiscount() {
         BookingResult result = system.bookFlight(6, LocalDateTime.now(), 10, 120.0, 20, false, 
                                                  LocalDateTime.now().plusDays(4), 0);
         double expectedPrice = 6 * 120 * (20.0 / 100.0) * 0.8 * 0.95; // Group discount
@@ -73,7 +73,7 @@ public class FlightBookingSystemTest {
     }
 
     @Test
-    void testCancellationMoreThan48Hours() {
+    public void testCancellationMoreThan48Hours() {
         BookingResult result = system.bookFlight(3, LocalDateTime.now(), 5, 180.0, 40, true, 
                                                  LocalDateTime.now().plusDays(3), 0);
         assertFalse(result.confirmation);
@@ -82,7 +82,7 @@ public class FlightBookingSystemTest {
     }
 
     @Test
-    void testCancellationLessThan48Hours() {
+    public void testCancellationLessThan48Hours() {
         BookingResult result = system.bookFlight(3, LocalDateTime.now(), 5, 180.0, 40, true, 
                                                  LocalDateTime.now().plusHours(40), 0);
         assertFalse(result.confirmation);
