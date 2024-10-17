@@ -81,11 +81,15 @@ public class SmartEnergyManagementSystem {
 
         // Shut down devices as energy limit is approached
         while (totalEnergyUsedToday >= energyUsageLimit && deviceStatus.containsValue(true)) {
+            boolean turnedOffDevice = false;
             for (Map.Entry<String, Integer> entry : devicePriorities.entrySet()) {
                 if (deviceStatus.get(entry.getKey()) && entry.getValue() > 1) {
                     deviceStatus.put(entry.getKey(), false);
                     totalEnergyUsedToday -= 1;  // Simulate energy reduction
                 }
+            }
+            if (!turnedOffDevice) {
+                break;  // Break if no devices were turned off during the loop iteration
             }
         }
 
